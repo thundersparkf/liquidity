@@ -1,12 +1,13 @@
 import psycopg2
 import psycopg2.extras
-
+import os
+DATABASE_URL = os.environ['DATABASE_URL']
 class Database:
     def __init__(self):
         self.host = 'localhost'
         self.database = 'itus'
     def connectToDatabase(self):
-        engine = psycopg2.connect(host = self.host, database = self.database)
+        engine = psycopg2.connect(DATABASE_URL, sslmode='require')
         return engine
 
     def disconnectToDatabase(self, engine):
