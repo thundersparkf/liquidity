@@ -16,7 +16,12 @@ class LiquidityCalc:
             stocks.append(line.strip())
         return stocks
     def getNames(self, isins):
-        dict = pd.read_csv('./core/nse.csv').to_dict('records')
+        db = Database()
+        sql = """SELECT * FROM nse_isins WHERE isin_code =ANY (%s)"""
+        results = db.pullData(sql, isins)
+        dict = {}
+        for result in results:
+            dict[result[0]] = result[1]
         return dict
     def getVol(self):
         stocks = self.readText()
