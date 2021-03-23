@@ -10,12 +10,14 @@ class Liquidity(Resource):
     def get(self):
         a = LiquidityCalc()
         df = a.getVol()
+        dt = date.today()
+        dt = str(dt.day)+'-'+str(dt.month)+'-'+str(dt.year)
         print(df)
         return Response(
                 df.to_csv(),
                 mimetype="text/csv",
                 headers={"Content-disposition":
-                         "attachment; filename=df.csv"})
+                         "attachment; filename="+dt+".csv"})
 @api.route('/liquidity/today')
 class Liquidity(Resource):
     def get(self):
