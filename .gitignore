@@ -16,6 +16,11 @@ __pycache__/
 */*/*.json
 /*.json
 
+*.xlsx
+*/*.xlsx
+*/*/*.xlsx
+/*.xlsx
+
 *.ini
 */*.ini
 */*/*.ini
