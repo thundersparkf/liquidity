@@ -11,14 +11,17 @@ class Database:
         engine = psycopg2.connect(host = self.host, database = self.database)
         return engine
 
-    def disconnectToDatabase(self, engine):
+    @staticmethod
+    def disconnectToDatabase(engine):
         engine.close()
 
-    def getCursor(self, engine):
+    @staticmethod
+    def getCursor(engine):
         cursor = engine.cursor(cursor_factory = psycopg2.extras.DictCursor)
         return cursor
 
-    def closeCursor(self, cursor):
+    @staticmethod
+    def closeCursor(cursor):
         cursor.close()
 
     def initialiseStream(self):

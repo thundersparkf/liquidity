@@ -7,7 +7,8 @@ api = Api(app)
 
 @api.route('/liquidity')
 class Liquidity(Resource):
-    def get(self):
+    @staticmethod
+    def get():
         a = LiquidityCalc()
         df = a.getVol()
         dt = date.today()
@@ -20,7 +21,8 @@ class Liquidity(Resource):
                          "attachment; filename="+dt+".csv"})
 @api.route('/liquidity/today')
 class Liquidity(Resource):
-    def get(self):
+    @staticmethod
+    def get():
         a = LiquidityCalc()
         df = a.getVol()
         print("HAHA")

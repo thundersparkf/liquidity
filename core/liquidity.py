@@ -5,17 +5,20 @@ import pandas as pd
 class LiquidityCalc:
     def __init__(self):
         pass
-    def getStocks(self, df):
+    @staticmethod
+    def getStocks(df):
         isins = df['ISIN'].values
         return isins
-    def readText(self):
+    @staticmethod
+    def readText():
         f = open('./core/stocks.txt', 'r')
         lines = f.readlines()
         stocks = []
         for line in lines:
             stocks.append(line.strip())
         return stocks
-    def getNames(self, isins):
+    @staticmethod
+    def getNames(isins):
         db = Database()
         sql = """SELECT * FROM nse_isins WHERE isin_code =ANY (%s)"""
         results = db.pullData(sql, isins)
